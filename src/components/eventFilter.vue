@@ -29,7 +29,7 @@
 </script>
 <style lang="scss" scoped>
   .eventsFilter {
-    height: 7rem;
+    // height: 7rem;
     margin-bottom: 2rem;
     background: #F2F2F2;
     padding: 33px 0;
