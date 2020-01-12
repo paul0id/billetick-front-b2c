@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-7">
-          <h2 class="subscribe-title">Хочешь быть первым в курсе всех мероприятий? <br> Подпишись и мы поможем решить куда сходить в Москве!</h2>
+          <h2 class="subscribe-title">Хочешь быть первым в курсе всех мероприятий? <br> Подпишись и мы поможем решить куда сходить в Сочи!</h2>
           <div class="form-group">
             <div class="row">
               <div class="col-md-6">

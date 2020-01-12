@@ -6,7 +6,7 @@
           <a href="/" class="logo">
             <img src="../assets/logo.svg" alt="">
           </a>
-          <a href="#" class="pseudo-link location-link">Москва</a>
+          <a href="#" class="pseudo-link location-link">Сочи</a>
         </div>
         <div class="col-md-8 text-right">
           <a href="#" class="pseudo-link create-event-link">Создать мероприятие</a>

@@ -1,12 +1,14 @@
 <template>
   <section class="mainSlider">
     <div class="container">
-      <h1 class="main-title">Быстрый поиск и покупка билетов без комиссии в москве</h1>
+      <br>
+      <h1 class="main-title">Быстрый поиск и покупка билетов без комиссии</h1>
 
       <div class="row">
         <div class="col-md-12">
           <div class="slider-event" v-for="event in sliderEvents" :key="event.title">
             <div class="event-item">
+              
               <div class="event-image">
                 <img :src="event.image" alt="">
               </div>
@@ -18,12 +20,18 @@
                 <div class="event-item-title">
                   {{event.title}}
                 </div>
+                <div class="text-center" @click="openForeignLink(event.aboutLink)" style="cursor:pointer">
+                  <u>Посмотреть подробную информацию</u><br>
+                  <img src='http://sochiru.ru/upload/iblock/94f/94fb9cc1c23ee339134bbc29e4097a02.svg' height="32px" style="margin-bottom:10px"/><br>
+
+                </div>
+
                 <div class="event-info">
-                  <div class="event-info-item date">{{event.date}}</div>
+                  <div class="event-info-item date" v-if="event.date!=''">{{event.date}}</div>
                   <div class="event-info-item location">{{event.location}}</div>
                   <div class="event-info-item price">{{event.price}}  ₽</div>
                 </div>
-                <a href="#" class="event-buy-btn btn">Купить билеты</a>
+                <button class="event-buy-btn btn" @click="butTicket(event.id)">Купить билеты</button>
               </div>
 
             </div>
@@ -41,17 +49,27 @@ export default {
     return {
       sliderEvents: [
         {
-          type: 'Концерт',
-          title: '«Игра престолов. Музыка семи королевств Вестероса»',
-          agelimit: '6',
-          date: '15 ФЕВРаля, 2020 СБ 19:00',
-          location: 'Театр им.Маяковского',
-          price: '1 000 — 8 000',
-          image: 'https://www.culture.ru/storage/images/906c3c46e1d3cc646664654062772715/53f9ec7bbb6c445601ee5e8635844e3d.jpg'
+          id:"0",
+          type: 'Парк',
+          title: '«Сочинский Дендрарий»',
+          agelimit: '0',
+          date: 'Ежедневно: 09.00-17.00',
+          location: 'г. Сочи, Курортный проспект, д. 74',
+          price: '250',
+          image: 'https://for-travels.ru/wp-content/uploads/2017/08/maxresdefault-1.jpg',
+          aboutLink:"http://sochiru.ru/kuda-poyti/4905/dendrariy/"
         }
       ]
     }
-  }
+  },
+  methods: {
+    buyTicket() {
+
+    },
+    openForeignLink(url) {
+      document.location=url
+    }
+   }
 }
 </script>
 <style lang="scss" scoped>
@@ -134,6 +152,7 @@ export default {
           background: #3400da;
           background: linear-gradient(160deg, #3400da 0%, #3400da 51%, #b1f8d8 100%);
         }
+        cursor: pointer;
       }
     }
     
