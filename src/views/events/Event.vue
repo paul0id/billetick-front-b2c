@@ -103,7 +103,9 @@
         
         <img :src="qr_code" alt="">
 
-        <a href="/" type="button" class="btn btn-primary">Вернуться к списку</a>
+        <p class="desc">Cохраните QR-код! <br> Билет отправлен вам на почту.</p>
+
+        <a href="/" type="button" class="btn btn-primary">Вернуться к покупкам</a>
         
       </div>
 
@@ -260,7 +262,7 @@ export default {
       margin-top: -300px;
       padding: 20px;
       width: 400px;
-      height: 630px;
+      height: 670px;
       background: #fff;
       box-shadow: 0 0 10 #000;
       h1 {
@@ -269,7 +271,9 @@ export default {
       }
       img {
         max-width: 100%;
-        margin-bottom: 20px;
+      }
+      .desc {
+        color: orange;
       }
       .event-info {
         margin-bottom: 1.6rem;
