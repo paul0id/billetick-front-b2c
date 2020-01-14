@@ -2,9 +2,10 @@
   <div class="home">
     <mainHeader v-if="!hideHeader"/>
     <!--<eventFilter/>-->
-    <mainSlider/>
+    <mainSlider :event="events[0]"/>
     <div class="container">
       <h1 class="main-title">Ипользуя наш сервис вы получаете</h1>
+
       <div class="row features">
         <div class="col-md-3">
           <div class="feature-item">
@@ -12,9 +13,9 @@
               <img src="/icons/rocket.svg" alt="">
             </div>
             <div class="feature-item-description">Быстрый поиск и покупка билетов без комиссии</div>
-            
           </div>
         </div>
+
         <div class="col-md-3">
           <div class="feature-item">
             <div class="feature-item-icon">
@@ -23,6 +24,7 @@
             <div class="feature-item-description">Вы платите только за билет без наценок и прочих сборов</div>
           </div>
         </div>
+
         <div class="col-md-3">
           <div class="feature-item">
             <div class="feature-item-icon">
@@ -31,6 +33,7 @@
             <div class="feature-item-description">не надо искать принтер - Покажите билет на смартфоне</div>
           </div>
         </div>
+
         <div class="col-md-3">
           <div class="feature-item">
             <div class="feature-item-icon">
@@ -39,12 +42,13 @@
             <div class="feature-item-description">покупай билет для близких и отправляй им на телефон </div>
           </div>
         </div>
+
       </div>
 
 
       <h1 class="main-title">Куда сходить в {{cityName}}</h1>
       <div class="row events">
-        <div class="col-md-3" v-for="event in misc" :key="event.title">
+        <div class="col-md-3" v-for="event in events" :key="event.title">
           <div class="event-item">
             <div class="event-item-header d-table">
               <div class="d-table-cell align-middle">
@@ -61,7 +65,7 @@
                 <div class="event-info-item location">{{event.location}}</div>
                 <div class="event-info-item price">{{event.price}}  ₽</div>
               </div>
-              <a class="event-buy-btn btn" @click="test()" style="cursor:pointer">Купить билет</a>
+              <router-link class="event-buy-btn btn" :to="`events/${event._id}`" style="cursor:pointer">Купить билет</router-link>
             </div>
           </div>
         </div>
@@ -78,7 +82,7 @@
 </template>
 
 <script>
-// import { HTTP } from '@/http-common'
+import { HTTP } from '@/http-common'
 import mainHeader from '@/components/mainHeader.vue'
 //import eventFilter from '@/components/eventFilter.vue'
 import mainSlider from '@/components/mainSlider.vue'
@@ -98,6 +102,7 @@ export default {
     return {
       cityName:"Сочи",
       hideHeader:false,
+      events: [],
       misc:[
         {
             "_id":"1",
@@ -169,7 +174,7 @@ export default {
             "image":"http://npsochi.ru/images/ekoprosveshchenie/razdel-o-turizme-i-marshrutakh/vodopad-devichi-sljozy/191.jpg",
             "agelimit":0
         },
-                {
+        {
             "_id":"8",
             "type":"Природный объект",
             "title":"Агурский водопад",
@@ -178,30 +183,28 @@ export default {
             "price":"100",
             "image":"http://npsochi.ru/images/ekoprosveshchenie/razdel-o-turizme-i-marshrutakh/agurskij-vodopad/268.jpg",
             "agelimit":0
-        },
-
-
-
+        }
       ],
     }
   },
   methods: {
-    // getEvents () {
-    //   HTTP.get('/events')
-    //   .then(response => {
-    //     console.log(response.data)
-    //   })
-    //   .catch(e => {
-    //     console.log('Error - ' + e)
-    //     // this.error = e
-    //   })
-    // }
-    test() {
-      window.alert('TEST OK');
+    getEvents () {
+      HTTP.get('/events')
+      .then(response => {
+        this.events = response.data
+        // console.log(response.data)
+      })
+      .catch(e => {
+        console.log('Error - ' + e)
+        // this.error = e
+      })
+    },
+    goToEvent () {
+
     }
   },
   created() {
-    // this.getEvents()
+    this.getEvents()
 
     let getQueryString=document.location.href.split('?')[1];
     if (getQueryString) {

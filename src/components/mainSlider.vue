@@ -6,7 +6,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <div class="slider-event" v-for="event in sliderEvents" :key="event.title">
+          <div class="slider-event">
             <div class="event-item">
               
               <div class="event-image">
@@ -20,18 +20,18 @@
                 <div class="event-item-title">
                   {{event.title}}
                 </div>
-                <div class="text-center" @click="openForeignLink(event.aboutLink)" style="cursor:pointer">
+                <!-- <div class="text-center" @click="openForeignLink(event.aboutLink)" style="cursor:pointer">
                   <u>Посмотреть подробную информацию</u><br>
                   <img src='http://sochiru.ru/upload/iblock/94f/94fb9cc1c23ee339134bbc29e4097a02.svg' height="32px" style="margin-bottom:10px"/><br>
 
-                </div>
+                </div> -->
 
                 <div class="event-info">
                   <div class="event-info-item date" v-if="event.date!=''">{{event.date}}</div>
                   <div class="event-info-item location">{{event.location}}</div>
                   <div class="event-info-item price">{{event.price}}  ₽</div>
                 </div>
-                <button class="event-buy-btn btn" @click="butTicket(event.id)">Купить билеты</button>
+                <router-link class="event-buy-btn btn"  :to="`events/${event._id}`">Купить билеты</router-link>
               </div>
 
             </div>
@@ -45,19 +45,20 @@
 <script>
 export default {
   name: 'Slider',
+  props: ['event'],
   data() {
     return {
       sliderEvents: [
         {
-          id:"0",
-          type: 'Парк',
-          title: '«Сочинский Дендрарий»',
-          agelimit: '0',
-          date: 'Ежедневно: 09.00-17.00',
-          location: 'г. Сочи, Курортный проспект, д. 74',
-          price: '250',
-          image: 'https://for-travels.ru/wp-content/uploads/2017/08/maxresdefault-1.jpg',
-          aboutLink:"http://sochiru.ru/kuda-poyti/4905/dendrariy/"
+          id: '',
+          type: '',
+          title: '',
+          agelimit: '',
+          date: '',
+          location: '',
+          price: '',
+          image: '',
+          aboutLink: ''
         }
       ]
     }

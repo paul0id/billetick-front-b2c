@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Event from '../views/events/Event.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +10,12 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  },
+  {
+    path: '/events/:id',
+    name: 'Event',
+    component: Event,
+    props: true,
   },
   {
     path: '/about',
