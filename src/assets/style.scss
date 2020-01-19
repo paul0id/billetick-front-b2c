@@ -147,8 +147,18 @@ body {
 @media only screen and (max-width: 375px) {
   .mainHeader {
     .pseudo-link {
-      &.location-link {
+      font-size: 0.8rem;
+      line-height: 0.3rem;
+      margin-top: 11px;
+      &.location-link,
+      &.cart-link {
         float: right;
+      }
+      &.location-link {
+        margin-right: 20px;
+        &::before {
+          top: -4px !important;
+        }
       }
       &.create-event-link,
       &.profile-link {

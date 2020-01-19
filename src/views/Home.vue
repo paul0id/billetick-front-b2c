@@ -65,7 +65,7 @@
                 <div class="event-info-item location">{{event.location}}</div>
                 <div class="event-info-item price">{{event.price}}  ₽</div>
               </div>
-              <router-link class="event-buy-btn btn" :to="`events/${event._id}`" style="cursor:pointer">Купить билет</router-link>
+              <div class="event-buy-btn btn" @click="addToCart(event)" style="cursor:pointer">Купить билет</div>
             </div>
           </div>
         </div>
@@ -199,8 +199,13 @@ export default {
         // this.error = e
       })
     },
-    goToEvent () {
-
+    addToCart (event) {
+      if (localStorage.cart) {
+        localStorage.cart = localStorage.cart + ',' + event._id
+      } else {
+        localStorage.cart = event._id
+      }
+      
     }
   },
   created() {

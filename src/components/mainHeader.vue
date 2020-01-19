@@ -2,15 +2,15 @@
   <header class="mainHeader">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 col-10">
           <a href="/" class="logo">
             <img src="../assets/logo.svg" alt="">
           </a>
           <a href="#" class="pseudo-link location-link">Сочи</a>
         </div>
-        <div class="col-md-8 text-right">
+        <div class="col-md-8 col-2 text-right">
           <a href="#" class="pseudo-link create-event-link">Создать мероприятие</a>
-          <a href="#" class="pseudo-link profile-link">Войти</a>
+          <a href="/cart" class="pseudo-link cart-link">КОРЗИНА</a>
         </div>
       </div>
     </div>
