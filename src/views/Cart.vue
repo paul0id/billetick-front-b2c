@@ -213,7 +213,8 @@ export default {
           customer: this.customer,
           email: this.email,
           tickets: this.items,
-          payment: this.payment
+          payment: this.payment,
+          details: ""
         }
       }
       // console.log(request)
