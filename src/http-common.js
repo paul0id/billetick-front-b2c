@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const HTTP = axios.create({
-    baseURL: "http://83.166.241.101:19999/public/api/"
+    baseURL: "https://billetick.herokuapp.com/public/api/"
     // headers: {
     //     "Access-Control-Allow-Origin": "*"
     // }
