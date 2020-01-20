@@ -33,22 +33,32 @@
 
                   <div class="form-group">
                     <label for="firtst_name">Фамилия</label>
-                    <input required type="text" class="form-control" id="firtst_name" placeholder="Фамилия" v-model="firtst_name">
+                    <input required type="text" class="form-control" id="firtst_name" placeholder="Фамилия" v-model="customer.F">
                   </div>
 
                   <div class="form-group">
                     <label for="second_name">Имя</label>
-                    <input required type="text" class="form-control" id="second_name" placeholder="Имя" v-model="second_name">
+                    <input required type="text" class="form-control" id="second_name" placeholder="Имя" v-model="customer.I">
                   </div>
 
                   <div class="form-group">
                     <label for="surname">Отчество</label>
-                    <input required type="text" class="form-control" id="surname" placeholder="Отчество" v-model="surname">
+                    <input required type="text" class="form-control" id="surname" placeholder="Отчество" v-model="customer.O">
                   </div>
 
                   <div class="form-group">
-                    <label for="docnum">Серия и номер паспорта</label>
-                    <input required type="text" class="form-control" id="docnum" placeholder="Серия и номер паспорта" v-model="docnum">
+                    <label for="docnum">Тип документа</label>
+                    <select id="select" name="select" v-model="customer.doctype" class="form-control">
+                      <option value="ПАСПОРТ РФ">ПАСПОРТ РФ</option>
+                      <option value="ЗАГРАНИЧНЫЙ ПАСПОРТ">ЗАГРАНИЧНЫЙ ПАСПОРТ</option>
+                      <option value="ВОДИТЕЛЬСКОЕ УДОСТОВЕРЕНИЕ">ВОДИТЕЛЬСКОЕ УДОСТОВЕРЕНИЕ</option>
+                      <option value="ДРУГОЕ">ДРУГОЕ</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="docnum">Серия и номер документа</label>
+                    <input required type="text" class="form-control" id="docnum" placeholder="Серия и номер паспорта" v-model="customer.docnum">
                   </div>
 
                   <div class="form-group">
@@ -84,7 +94,7 @@
 
                   <div class="form-group">
                     <label for="agree" class="agree">
-                      <input type="checkbox" name="agree" id="agree" />
+                      <input type="checkbox" name="agree" id="agree" style="margin-right: 10px;">
                       Даю согласие на обработку персональных данных
                     </label>
                   </div>
@@ -158,13 +168,21 @@ export default {
       firtst_name: '',
       second_name: '',
       surname: '',
+      doctype: '',
       docnum: '',
-      email: '',
+      email: 'iii@gmail.com',
+      customer: {
+        F:'Иванов',
+        I:'Иван',
+        O:'Иванович',
+        doctype: 'ПАСПОРТ РФ',
+        docnum: '1122334455' 
+      },
       payment: {
-        cardNum: '',
-        valid: '',
-        cardholdername: '',
-        cvc: ''
+        cardNum: '1234123412341234',
+        valid: '07/2020',
+        cardholdername: 'IVANOV IVAN',
+        cvc: '111'
       },
       qr_code: ''
     }
@@ -192,32 +210,24 @@ export default {
     buyTicket () {
       let request = {
         order: {
-          customer: {
-            F: this.firtst_name,
-            I: this.second_name,
-            O: this.surname,
-            doctype: 'ПАСПОРТ РФ',
-            docnum: this.docnum,
-            email: this.email
-          },
+          customer: this.customer,
           email: this.email,
           tickets: this.items,
           payment: this.payment
         }
       }
-      console.log(request)
-
-      // HTTP.post('/buytickets', request)
-      // .then(response => {
-      //   // console.log(response.data)
-      //   this.qr_code = response.data.tickets[0].ticket
-      //   this.showTicket = true
-      //   localStorage.cart = ''
-      // })
-      // .catch(e => {
-      //   console.log('Error - ' + e)
-      //   // this.error = e
-      // })
+      // console.log(request)
+      HTTP.post('/buytickets', request)
+      .then(response => {
+        // console.log(response.data)
+        this.qr_code = response.data.tickets[0].ticket
+        this.showTicket = true
+        localStorage.cart = ''
+      })
+      .catch(e => {
+        console.log('Error - ' + e)
+        // this.error = e
+      })
     }
   },
   created() {

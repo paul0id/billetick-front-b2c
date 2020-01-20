@@ -2,7 +2,7 @@
   <div class="home">
     <mainHeader v-if="!hideHeader"/>
     <!--<eventFilter/>-->
-    <mainSlider :event="events[0]"/>
+    <mainSlider :event="events[sliderItemIndex]"/>
     <div class="container">
       <h1 class="main-title">Ипользуя наш сервис вы получаете</h1>
 
@@ -100,6 +100,7 @@ export default {
   },
   data(){
     return {
+      sliderItemIndex:0,
       cityName:"Сочи",
       hideHeader:false,
       events: [],
@@ -221,6 +222,8 @@ export default {
         }
       })
     }
+
+    this.sliderItemIndex = Math.floor(Math.random() * Math.floor(5))
 
   }
 }
